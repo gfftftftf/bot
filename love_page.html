@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️ 给你的特别心意 ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e, #ffb6b6);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            color: white;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            margin: 20px;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ff3366, #ff6699);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 2s infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 10px #ff3366; }
+            100% { text-shadow: 0 0 20px #ff6699, 0 0 30px #ff3366; }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .heart-container {
+            position: relative;
+            height: 200px;
+            margin: 30px 0;
+        }
+        
+        .main-heart {
+            font-size: 100px;
+            color: #ff3366;
+            animation: heartbeat 1.2s infinite;
+            text-shadow: 0 0 20px rgba(255, 51, 102, 0.7);
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 51, 102, 0.7);
+            animation: float 6s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .message-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: left;
+            border-left: 5px solid #ff3366;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .signature {
+            text-align: right;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #ffccdd;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .yes-btn {
+            background: linear-gradient(45deg, #ff3366, #ff6699);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+        }
+        
+        .yes-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 51, 102, 0.6);
+        }
+        
+        .no-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .no-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .music-control {
+            margin-top: 20px;
+        }
+        
+        .music-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .container {
+                padding: 20px;
+                width: 95%;
+            }
+            
+            .main-heart {
+                font-size: 80px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-heart"></i> 给你的特别心意 <i class="fas fa-heart"></i></h1>
+            <p class="subtitle">这份心意，只想让你知道 ❤️</p>
+        </div>
+        
+        <div class="heart-container">
+            <div class="main-heart">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="floating-hearts" id="floatingHearts">
+                <!-- 浮动爱心将通过JS生成 -->
+            </div>
+        </div>
+        
+        <div class="message-box">
+            <p class="message">
+                在遇见你之前，我从未想过心跳可以如此清晰。<br>
+                你的笑容像阳光，照亮了我世界的每一个角落。<br>
+                你的声音像音乐，让我每天都想单曲循环。<br>
+                和你在一起的每一刻，时间都变得温柔而珍贵。
+            </p>
+            
+            <p class="message">
+                我不知道未来会怎样，但我知道：<br>
+                我想和你一起看日出日落，<br>
+                想和你分享生活的点点滴滴，<br>
+                想在你需要的时候，永远都在你身边。
+            </p>
+            
+            <p class="message">
+                这份心意，可能不够华丽，但足够真诚。<br>
+                这句话，可能不够浪漫，但发自内心：
+            </p>
+            
+            <div class="signature">
+                —— 喜欢你，从遇见你的那一刻起
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <button class="btn yes-btn" id="yesBtn">
+                <i class="fas fa-check"></i> 我也喜欢你
+            </button>
+            <button class="btn no-btn" id="noBtn">
+                <i class="fas fa-times"></i> 再考虑一下
+            </button>
+        </div>
+        
+        <div class="music-control">
+            <button class="music-btn" id="musicBtn">
+                <i class="fas fa-music"></i> 播放背景音乐
+            </button>
+        </div>
+        
+        <div class="footer">
+            <p>❤️ 用心制作 | 适配所有设备 | 永远珍藏 ❤️</p>
+            <p>生成时间: 2026年04月05日 10:01</p>
+        </div>
+    </div>
+    
+    <!-- 背景音乐 -->
+    <audio id="bgMusic" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-loving-you-117.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // 生成浮动爱心
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                
+                // 随机位置
+                const left = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = 3 + Math.random() * 4;
+                
+                heart.style.left = left + '%';
+                heart.style.animationDelay = delay + 's';
+                heart.style.animationDuration = duration + 's';
+                
+                // 随机大小
+                const size = 16 + Math.random() * 20;
+                heart.style.fontSize = size + 'px';
+                
+                // 随机颜色
+                const colors = ['#ff3366', '#ff6699', '#ff99cc', '#ffccdd'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.color = color;
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // 按钮交互
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-heart"></i> 太好了！爱你！';
+            this.style.background = 'linear-gradient(45deg, #00cc66, #00ff99)';
+            this.style.boxShadow = '0 0 20px rgba(0, 204, 102, 0.7)';
+            
+            // 创建庆祝效果
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createCelebration();
+                }, i * 100);
+            }
+            
+            // 播放音效
+            const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-happy-crowd-laugh-464.mp3');
+            audio.volume = 0.3;
+            audio.play();
+        });
+        
+        document.getElementById('noBtn').addEventListener('click', function() {
+            const messages = [
+                '再给我一次机会？',
+                '真的不再考虑一下吗？',
+                '我会一直等你的',
+                '我的心不会改变',
+                '你确定要选这个吗？'
+            ];
+            
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            this.innerHTML = '<i class="fas fa-heart-broken"></i> ' + randomMsg;
+            
+            // 移动按钮
+            const container = document.querySelector('.buttons');
+            const maxX = container.offsetWidth - this.offsetWidth;
+            const maxY = container.offsetHeight - this.offsetHeight;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            this.style.position = 'absolute';
+            this.style.left = randomX + 'px';
+            this.style.top = randomY + 'px';
+        });
+        
+        // 音乐控制
+        const musicBtn = document.getElementById('musicBtn');
+        const bgMusic = document.getElementById('bgMusic');
+        let musicPlaying = false;
+        
+        musicBtn.addEventListener('click', function() {
+            if (musicPlaying) {
+                bgMusic.pause();
+                this.innerHTML = '<i class="fas fa-music"></i> 播放背景音乐';
+                musicPlaying = false;
+            } else {
+                bgMusic.play().catch(e => {
+                    console.log('自动播放被阻止，需要用户交互');
+                    this.innerHTML = '<i class="fas fa-play"></i> 点击播放音乐';
+                });
+                this.innerHTML = '<i class="fas fa-pause"></i> 暂停音乐';
+                musicPlaying = true;
+            }
+        });
+        
+        // 庆祝效果
+        function createCelebration() {
+            const celebration = document.createElement('div');
+            celebration.style.position = 'fixed';
+            celebration.style.fontSize = '30px';
+            celebration.style.color = '#ff3366';
+            celebration.style.zIndex = '1000';
+            celebration.style.pointerEvents = 'none';
+            celebration.innerHTML = '❤️';
+            
+            const startX = Math.random() * window.innerWidth;
+            const startY = window.innerHeight;
+            
+            celebration.style.left = startX + 'px';
+            celebration.style.top = startY + 'px';
+            
+            document.body.appendChild(celebration);
+            
+            // 动画
+            const animation = celebration.animate([
+                { transform: 'translateY(0) scale(1)', opacity: 1 },
+                { transform: 'translateY(-200px) scale(1.5)', opacity: 0.8 },
+                { transform: 'translateY(-400px) scale(0.5)', opacity: 0 }
+            ], {
+                duration: 1500,
+                easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+            });
+            
+            animation.onfinish = () => {
+                celebration.remove();
+            };
+        }
+        
+        // 页面加载完成后初始化
+        window.addEventListener('load', function() {
+            createFloatingHearts();
+            
+            // 自动开始浮动爱心动画
+            setInterval(() => {
+                const hearts = document.querySelectorAll('.floating-heart');
+                hearts.forEach(heart => {
+                    heart.style.animation = 'none';
+                    void heart.offsetWidth; // 触发重绘
+                    heart.style.animation = null;
+                });
+            }, 10000);
+            
+            // 提示音乐播放
+            setTimeout(() => {
+                musicBtn.innerHTML = '<i class="fas fa-play"></i> 点击播放浪漫音乐';
+            }, 2000);
+        });
+        
+        // 触摸设备优化
+        document.addEventListener('touchstart', function() {}, {passive: true});
+    </script>
+</body>
+</html>
